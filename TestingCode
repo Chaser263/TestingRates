@@ -1,0 +1,87 @@
+from playwright.sync_api import sync_playwright
+import pandas as pd
+from datetime import datetime
+
+def scrape_bank_rates():
+    banks = [
+        {
+            'name': 'Discover',
+            'url': 'https://www.discover.com/online-banking/savings-account/',
+            'selector': 'span.reflectApy'
+        },
+        {
+            'name': 'Ally',
+            'url': 'https://www.ally.com/bank/online-savings-account/',
+            'selector': 'span.allysf-rates-v1-value'
+        },
+        {
+            'name': 'Amex',
+            'url': 'https://www.americanexpress.com/en-us/banking/online-savings/account/',
+            'selector': 'span#hysa-apy-1'
+        },
+        {
+            'name': 'CapitalOne',
+            'url': 'https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/',
+            'selector': 'rates-inline[product="psa"]'
+        },
+        {
+            'name': 'Barclays',
+            'url': 'https://www.banking.barclaysus.com/tiered-savings.html',
+            'selector': 'span#rate'
+        },
+        {
+            'name': 'Citizens',
+            'url': 'https://www.secure.citizensaccess.com/Citizens',
+            'selector': 'span._productLine.inactive.active[product_line="cax"]'
+        }
+    ]
+
+    results = []
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+
+        for bank in banks:
+            print(f"\nProcessing {bank['name']}...")
+
+            try:
+                page.goto(bank['url'], wait_until='networkidle')
+                rate_element = page.locator(bank['selector']).first
+                rate_text = rate_element.text_content()
+
+                import re
+                rate = float(re.findall(r'\d*\.?\d+', rate_text)[0])
+
+                results.append({
+                    'bank': bank['name'],
+                    'timestamp': datetime.now(),
+                    'rate': rate
+                })
+
+                print(f"Completed {bank['name']}: Rate: {rate}%")
+
+            except Exception as e:
+                print(f"Error processing {bank['name']}: {str(e)}")
+                results.append({
+                    'bank': bank['name'],
+                    'timestamp': datetime.now(),
+                    'rate': None
+                })
+
+        browser.close()
+
+    return pd.DataFrame(results)
+
+
+if __name__ == "__main__":
+    print("Starting rate collection...")
+
+    df = scrape_bank_rates()
+
+    filename = f"bank_rates_{datetime.now().strftime('%Y%m%d_%H%M')}.csv"
+    df.to_csv(filename, index=False)
+
+    print("\nFinal Results:")
+    print(df)
+    print(f"\nResults saved to {filename}")
