@@ -1,4 +1,4 @@
-A rate scraper to get instant checks on other HYSA APY's, checks bots.txt to ensure compliant with web-scraping best practices
+A rate scraper to get real-time checks on other HYSA APY's, checks bots.txt to ensure compliant with web-scraping best practices 
 
 ***Can add banks without a proper coding background***
 1. go to bank website page, 2. right click inspect element in chrome 3. go directly over the rate number 
