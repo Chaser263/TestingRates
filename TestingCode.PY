@@ -4,6 +4,7 @@ from datetime import datetime
 from urllib.robotparser import RobotFileParser
 from urllib.parse import urlparse
 ## import necessary libraries: playwright for chrome, pandas for converting to CSV
+##to ensure fast execution, type into python terminal "npx playwright test --timeout 10000" 
 
 ##create function for checking robots.txt
 def check_robots_allowed(url):
