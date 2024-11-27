@@ -43,10 +43,10 @@ Sample input:
 Takes a maximum of ~10s per bank 
 Final Results:
          bank                  timestamp  bots_allowed  rate
-0    Discover 2024-11-27 11:59:48.155135          True   3.9
-1        Ally 2024-11-27 11:59:58.950324          True   3.85
-2        Amex 2024-11-27 12:00:06.142858          True   3.9
-3  CapitalOne 2024-11-27 12:00:12.963245          True   3.9
-4    Barclays 2024-11-27 12:00:17.050686          True   4.8
-5    Citizens 2024-11-27 12:00:17.702257         False   NaN
+0    Discover 2024-11-27 14:37:59.387037          True  3.90
+1        Ally 2024-11-27 14:38:09.183178          True  3.85
+2        Amex 2024-11-27 14:38:13.235780          True  3.90
+3  CapitalOne 2024-11-27 14:38:16.252499          True  3.90
+4    Barclays 2024-11-27 14:38:19.260971          True  4.80
+5    Citizens 2024-11-27 14:38:19.410490         False   NaN
 
