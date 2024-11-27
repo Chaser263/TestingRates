@@ -1,0 +1,7 @@
+bank,timestamp,bots_allowed,rate
+Discover,2024-11-27 14:37:59.387037,True,3.9
+Ally,2024-11-27 14:38:09.183178,True,3.85
+Amex,2024-11-27 14:38:13.235780,True,3.9
+CapitalOne,2024-11-27 14:38:16.252499,True,3.9
+Barclays,2024-11-27 14:38:19.260971,True,4.8
+Citizens,2024-11-27 14:38:19.410490,False,
